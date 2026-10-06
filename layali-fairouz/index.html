@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1e6">
+<meta name="description" content="Layali Fairouz food and drinks menu">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Layali Fairouz Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Tajawal:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column of menu pages, a sticky Food / Drinks switch on top */
+:root{
+  --bg:#f7f1e6; --surface:#fffaf1; --fg:#3b2a17; --muted:#7a6448; --gold:#a8762c; --line:#e3d3b4;
+  --display:"Marcellus", Georgia, "Times New Roman", serif;
+  --body:"Tajawal", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c150e; --surface:#261d13; --fg:#f1e6d2; --muted:#bca78a; --gold:#d6a65a; --line:#3e3020; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c150e; --surface:#261d13; --fg:#f1e6d2; --muted:#bca78a; --gold:#d6a65a; --line:#3e3020; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 40px}
+header{text-align:center;display:grid;gap:4px;padding-block:12px 16px}
+h1{font-family:var(--display);font-weight:400;font-size:2rem;color:var(--gold);margin:0;letter-spacing:.02em;text-wrap:balance}
+.ar{font-size:1.25rem;color:var(--gold);margin:0}
+.note{color:var(--muted);font-size:.85rem;margin:6px 0 0;line-height:1.5}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);display:flex;justify-content:center;gap:8px;padding-block:10px;border-bottom:1px solid var(--line)}
+nav button{font:500 1rem var(--body);color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 22px;cursor:pointer;min-width:120px}
+nav button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fffaf1}
+nav button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.pages{display:grid;gap:14px;padding-top:16px}
+.pages img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 1px 8px rgba(60,40,10,.12);background:var(--surface)}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding-top:24px;display:grid;gap:4px}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.dl{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding-top:20px}
+.dl a{color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:8px 16px;text-decoration:none;font-size:.9rem}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Layali Fairouz</h1>
+    <p class="ar" lang="ar">ليالي فيروز</p>
+    <p class="note">All prices include 5% service charge, 10% VAT and 5% tourism levy.<br><span lang="ar" dir="rtl">جميع الأسعار شاملة رسوم الخدمة والضريبة ورسوم السياحة</span></p>
+  </header>
+  <nav aria-label="Menu">
+    <button type="button" id="tab-food" aria-pressed="true" data-k="food">Food · الطعام</button>
+    <button type="button" id="tab-drinks" aria-pressed="false" data-k="drinks">Drinks · المشروبات</button>
+  </nav>
+  <section class="pages" id="food"></section>
+  <section class="pages" id="drinks" hidden></section>
+  <div class="dl"><a href="Layali_Fairouz_Food_Menu.pdf">Food menu PDF</a><a href="Layali_Fairouz_Drinks_Menu.pdf">Drinks menu PDF</a></div>
+  <footer>
+    <span>+973 6663 5355</span>
+    <span>Instagram @Layalifairouzbh · TikTok @Layali_fairouz</span>
+  </footer>
+</div>
+
+<script>
+const sets={food:Array.from({length:20},(_,i)=>`food/p-${String(i+2).padStart(2,'0')}.jpg`),
+            drinks:Array.from({length:7},(_,i)=>`drinks/p-${i+2}.jpg`)};
+for(const [k,list] of Object.entries(sets)){
+  const box=document.getElementById(k);
+  list.forEach((src,i)=>{const im=new Image();im.src=src;im.alt=`${k==='food'?'Food':'Drinks'} menu page ${i+1}`;
+    im.loading=i<2?'eager':'lazy';im.width=1045;im.height=k==='food'?1478:1615;box.appendChild(im);});
+}
+function show(k){for(const b of document.querySelectorAll('nav button')){const on=b.dataset.k===k;b.setAttribute('aria-pressed',on);document.getElementById(b.dataset.k).hidden=!on;}}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{show(b.dataset.k);window.scrollTo({top:0})}));
+if(location.hash==='#drinks')show('drinks');
+</script>
+
+</body>
+</html>
