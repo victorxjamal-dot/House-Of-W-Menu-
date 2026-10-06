@@ -2,41 +2,278 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>House of W | Menu</title>
-<link rel="icon" href="favicon.png">
-<link rel="apple-touch-icon" href="logo.png">
+<meta name="description" content="House of W — Food & Beverage Menu">
 <meta name="theme-color" content="#000000">
-<meta name="description" content="House of W — Food &amp; Beverage Menu">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#000; --gold:#c9a24a; --text:#e8dcc0; }
-  :root[data-theme="dark"] { --bg:#000; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#000; } }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, "Times New Roman", serif; }
-  nav { position:sticky; top:0; z-index:5; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
-        padding:10px 16px; background:rgba(0,0,0,.92); border-bottom:1px solid #3a2f17; }
-  nav a { color:var(--gold); text-decoration:none; font-size:13px; letter-spacing:.18em; text-transform:uppercase;
-          padding:6px 12px; border:1px solid #5a4620; border-radius:2px; }
-  main { max-width:760px; margin:0 auto; padding:12px 16px 32px; }
-  img { display:block; width:100%; height:auto; margin:0 auto 14px; border:1px solid #2a2210; }
-  footer { text-align:center; font-size:12px; color:#8c7a52; padding:0 16px 28px; font-style:italic; }
+:root{
+  --bg:#050505; --card:#0f0d09; --line:#2b2414; --gold:#d4af37; --gold-soft:#b8964a;
+  --text:#f2ead8; --muted:#b5a78a; --tag:#1d1810;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:118px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.45;
+  background-image:radial-gradient(ellipse at 50% -10%,#2a200a 0%,transparent 55%);background-repeat:no-repeat}
+a{color:inherit;text-decoration:none}
+
+header{text-align:center;padding:34px 16px 18px}
+header img{width:190px;max-width:55vw;height:auto;filter:drop-shadow(0 0 22px rgba(212,175,55,.25))}
+header h1{font-family:Cinzel,serif;font-weight:600;color:var(--gold);letter-spacing:.32em;font-size:26px;margin:10px 0 4px;padding-left:.32em}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold-soft);margin:8px 0}
+.orn:before,.orn:after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold-soft))}
+.orn:after{transform:scaleX(-1)}
+.orn span{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+
+.tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(5,5,5,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tabs button{all:unset;cursor:pointer;text-align:center;padding:15px 4px 13px;font-family:Cinzel,serif;font-size:15px;letter-spacing:.18em;color:var(--muted);border-bottom:2px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--gold);border-bottom-color:var(--gold)}
+
+.chips{position:sticky;top:51px;z-index:15;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;background:rgba(5,5,5,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);scrollbar-width:none;border-bottom:1px solid #15120b}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;font-size:15px;padding:6px 14px;border:1px solid #4a3c1c;border-radius:999px;color:var(--muted);white-space:nowrap}
+.chips a.on{background:var(--gold);color:#000;border-color:var(--gold)}
+
+main{max-width:720px;margin:0 auto;padding-bottom:30px}
+h2{font-family:Cinzel,serif;font-weight:600;color:var(--gold);font-size:21px;letter-spacing:.16em;text-align:center;margin:34px 16px 16px;
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+h2:after{content:"";flex-basis:100%;height:1px;max-width:120px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent)}
+h2 .flat{font-family:"EB Garamond",serif;letter-spacing:0;font-size:19px;color:var(--text)}
+
+.dishes{list-style:none;padding:0 16px;display:grid;gap:14px}
+.dish{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.dish img{flex:none;width:104px;height:104px;object-fit:contain;border-radius:10px;background:radial-gradient(circle,#221b0d,#0f0d09 70%)}
+.dish .body{flex:1;min-width:0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.dish h3{font-family:Cinzel,serif;font-weight:600;font-size:16px;letter-spacing:.05em;color:var(--gold);line-height:1.25}
+.p{flex:none;white-space:nowrap;font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}
+.p b{font-weight:600}
+.p small,.flat small{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.p.multi{white-space:normal;text-align:right;font-size:15px;max-width:120px;line-height:1.3}
+.dish p{color:#d9cfb8;font-size:16px;margin:5px 0 8px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tags i{font-style:normal;font-size:12.5px;letter-spacing:.03em;background:var(--tag);color:var(--muted);border:1px solid #33291a;padding:2px 8px;border-radius:999px}
+.tags i.none{color:#9fbf8f;border-color:#2c3a24;background:#11180d}
+
+.list{width:calc(100% - 32px);margin:0 16px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.list th{font-family:Cinzel,serif;font-weight:500;font-size:12px;letter-spacing:.14em;color:var(--gold-soft);text-align:right;padding:0 0 6px;width:64px}
+.list td{padding:11px 0;border-bottom:1px solid #1d190f;font-size:17px}
+.list td:not(:first-child){text-align:right;width:64px;font-weight:500}
+.list.single td:last-child{width:auto;white-space:nowrap}
+.list.single td:last-child:after{content:" BHD";font-size:12px;color:var(--muted)}
+.list td:first-child{padding-right:10px}
+.note{margin:12px 16px 0;color:#d9cfb8;font-size:16px;text-align:center;font-style:italic}
+.note.big{font-size:17px;line-height:1.7}
+h3.sub{font-family:Cinzel,serif;color:var(--gold);text-align:center;font-size:16px;letter-spacing:.16em;margin:30px 0 4px}
+
+footer{text-align:center;padding:26px 20px 40px;color:var(--muted);font-size:14px;font-style:italic;border-top:1px solid var(--line);margin-top:34px}
+footer a{display:inline-block;margin-top:14px;font-style:normal;font-family:Cinzel,serif;letter-spacing:.14em;font-size:13px;color:var(--gold);border:1px solid #4a3c1c;padding:9px 18px;border-radius:999px}
 </style>
 </head>
 <body>
-<nav>
-  <a href="#food">Food</a>
-  <a href="#drinks">Beverages</a>
-  <a href="House_of_W_Menu.pdf" download>PDF</a>
-</nav>
+<header>
+  <img src="img/logo.webp" alt="House of W" width="600" height="390">
+  <h1>HOUSE OF W</h1>
+  <div class="orn"><span></span></div>
+</header>
+<div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-tab="food">Food</button>
+  <button role="tab" aria-selected="false" data-tab="drinks">Drinks</button>
+  <button role="tab" aria-selected="false" data-tab="shisha">Shisha</button>
+</div>
 <main>
-  <img src="pages/p-1.jpg" alt="House of W — Food &amp; Beverage Menu cover">
-  <img id="food" src="pages/p-2.jpg" alt="Food menu: appetizers and bites" loading="lazy">
-  <img src="pages/p-3.jpg" alt="Food menu: sandwiches and desserts" loading="lazy">
-  <img id="drinks" src="pages/p-4.jpg" alt="Beverage menu: vodka, whiskey, tequila, rum" loading="lazy">
-  <img src="pages/p-5.jpg" alt="Beverage menu: cognac, gin, wines, champagne, beers, cocktails, shisha, soft drinks" loading="lazy">
-  <img src="pages/p-6.jpg" alt="House of W back cover" loading="lazy">
+<section class="panel" id="food" data-panel="food"><nav class="chips"><a href="#appetizers">Appetizers</a><a href="#bites">Bites</a><a href="#sandwiches">Sandwiches</a><a href="#desserts">Desserts</a></nav>
+<h2 id="appetizers">Appetizers</h2><ul class="dishes">
+<li class="dish"><img src="img/caesar.webp" alt="Chicken Caesar Salad" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Chicken Caesar Salad</h3><span class="p"><b>6</b> <small>BHD</small></span></div><p>Crisp baby gem lettuce cups with shaved parmesan, golden garlic croutons and house-made anchovy dressing, finished with cracked black pepper and crispy fried chicken.</p><div class="tags"><i>Gluten</i><i>Dairy</i><i>Fish</i><i>Egg</i></div></div></li>
+<li class="dish"><img src="img/watermelon.webp" alt="Goat Cheese Watermelon Salad" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Goat Cheese Watermelon Salad</h3><span class="p"><b>7.5</b> <small>BHD</small></span></div><p>Chilled watermelon and creamy goat cheese finished with basil pesto oil, fresh arugula and capsicum feta.</p><div class="tags"><i>Dairy</i><i>Tree Nuts</i></div></div></li>
+<li class="dish"><img src="img/mezzeh.webp" alt="Arabic Mezzeh Mini Tarts" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Arabic Mezzeh Mini Tarts</h3><span class="p"><b>5</b> <small>BHD</small></span></div><p>Butter tart shells with a trio of Levantine flavours — silky hummus, smoky mutabbal and walnut-pomegranate muhammara — crowned with creamy labneh and extra virgin olive oil.</p><div class="tags"><i>Gluten</i><i>Dairy</i><i>Sesame</i><i>Tree Nuts</i></div></div></li>
+<li class="dish"><img src="img/salmon.webp" alt="Wild Smoked Salmon" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Wild Smoked Salmon</h3><span class="p"><b>20</b> <small>BHD</small></span></div><p>Smoked Scottish salmon layered with zaatar-spiced goat cheese on toasted French baguette.</p><div class="tags"><i>Fish</i><i>Dairy</i><i>Gluten</i></div></div></li>
+</ul>
+<h2 id="bites">Bites</h2><ul class="dishes">
+<li class="dish"><img src="img/tacos.webp" alt="Tawook Tacos" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Tawook Tacos</h3><span class="p"><b>5</b> <small>BHD</small></span></div><p>Charcoal-grilled chicken tawook with Arabian-style vegetables in a soft taco shell, finished with garlic sauce.</p><div class="tags"><i>Gluten</i><i>Dairy</i></div></div></li>
+<li class="dish"><img src="img/shrimp.webp" alt="Dynamite Shrimp" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Dynamite Shrimp</h3><span class="p"><b>8</b> <small>BHD</small></span></div><p>Crispy shrimp tossed in spiced dynamite mayo, served over banana leaf with shrimp crackers.</p><div class="tags"><i>Shellfish</i><i>Egg</i><i>Gluten</i></div></div></li>
+<li class="dish"><img src="img/wings.webp" alt="Boneless Buffalo Wings" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Boneless Buffalo Wings</h3><span class="p"><b>7</b> <small>BHD</small></span></div><p>Golden fried chicken bites in classic buffalo sauce or the chef&#x27;s signature glaze, finished with cheesy chipotle drizzle.</p><div class="tags"><i>Dairy</i><i>Gluten</i></div></div></li>
+<li class="dish"><img src="img/nachos.webp" alt="Nachos" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Nachos</h3><span class="p"><b>7.5</b> <small>BHD</small></span></div><p>Crispy tortilla chips with fresh guacamole, pickled jalapeños, corn, brown beans and onions, finished with sour cream.</p><div class="tags"><i>Dairy</i><i>Gluten</i></div></div></li>
+<li class="dish"><img src="img/fries.webp" alt="Truffle Fries" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Truffle Fries</h3><span class="p"><b>5</b> <small>BHD</small></span></div><p>Crispy fries with white truffle oil and shaved parmesan.</p><div class="tags"><i>Dairy</i></div></div></li>
+<li class="dish"><img src="img/cheese.webp" alt="Cheese Platter" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Cheese Platter</h3><span class="p multi">Small <b>15</b> · Large <b>25</b> <small>BHD</small></span></div><p>Creamy brie, fresh goat cheese and aged hard cheese with crackers, green olives, fresh figs, dried apricots, roasted almonds and fig jam.</p><div class="tags"><i>Dairy</i><i>Gluten</i><i>Tree Nuts</i></div></div></li>
+</ul>
+<h2 id="sandwiches">Sandwiches</h2><ul class="dishes">
+<li class="dish"><img src="img/wagyu.webp" alt="Wagyu Sliders" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Wagyu Sliders</h3><span class="p"><b>13</b> <small>BHD</small></span></div><p>Three mini wagyu patties on brioche buns with aged cheddar and secret house sauce, served with gherkins.</p><div class="tags"><i>Gluten</i><i>Dairy</i><i>Egg</i></div></div></li>
+<li class="dish"><img src="img/chicken-sliders.webp" alt="Crispy Chicken Sliders" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Crispy Chicken Sliders</h3><span class="p"><b>7</b> <small>BHD</small></span></div><p>Three crispy chicken strips on brioche buns with homemade ranch sauce.</p><div class="tags"><i>Gluten</i><i>Dairy</i><i>Egg</i></div></div></li>
+<li class="dish"><img src="img/steak.webp" alt="Steak Sandwich" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Steak Sandwich</h3><span class="p"><b>17</b> <small>BHD</small></span></div><p>Grilled beef tenderloin, thinly sliced and served sandwich-style.</p><div class="tags"><i>Gluten</i></div></div></li>
+<li class="dish"><img src="img/club.webp" alt="Club Sandwich" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Club Sandwich</h3><span class="p"><b>7</b> <small>BHD</small></span></div><p>The classic club sandwich, elevated with our house secret recipe.</p><div class="tags"><i>Gluten</i><i>Egg</i><i>Dairy</i></div></div></li>
+</ul>
+<h2 id="desserts">Desserts</h2><ul class="dishes">
+<li class="dish"><img src="img/pannacotta.webp" alt="Pistachio Panna Cotta" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Pistachio Panna Cotta</h3><span class="p"><b>5</b> <small>BHD</small></span></div><p>Silky pistachio panna cotta topped with crushed pistachio and rose petals.</p><div class="tags"><i>Dairy</i><i>Tree Nuts</i></div></div></li>
+<li class="dish"><img src="img/cheesecake.webp" alt="NY Cheesecake" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>NY Cheesecake</h3><span class="p"><b>6</b> <small>BHD</small></span></div><p>Creamy New York-style cheesecake on a buttery biscuit base with berry compote.</p><div class="tags"><i>Dairy</i><i>Gluten</i><i>Egg</i></div></div></li>
+<li class="dish"><img src="img/fruit.webp" alt="Fresh Fruit Platter" loading="lazy" width="112" height="112">
+<div class="body"><div class="row"><h3>Fresh Fruit Platter</h3><span class="p multi">Small <b>15</b> · Large <b>25</b> <small>BHD</small></span></div><p>Hand-cut seasonal fruit — watermelon, honeydew, pineapple, cantaloupe, kiwi, strawberries and red grapes — for sharing.</p><div class="tags"><i class='none'>No major allergens</i></div></div></li>
+</ul>
+</section>
+<section class="panel" id="drinks" data-panel="drinks" hidden><nav class="chips"><a href="#vodka">Vodka</a><a href="#blended-whiskey">Blended Whiskey</a><a href="#single-malt">Single Malt</a><a href="#american-whiskey">American Whiskey</a><a href="#tequila">Tequila</a><a href="#rum">Rum</a><a href="#cognac--brandy">Cognac &amp; Brandy</a><a href="#gin">Gin</a><a href="#champagne--sparkling">Champagne &amp; Sparkling</a><a href="#red-wine">Red Wine</a><a href="#rosé-wine">Rosé Wine</a><a href="#white-wine">White Wine</a><a href="#beers">Beers</a><a href="#classic-cocktails">Classic Cocktails</a><a href="#shots">Shots</a><a href="#soft-beverages">Soft Beverages</a></nav>
+<h2 id="vodka">Vodka</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Royal Dragon</td><td>10</td><td>225</td></tr>
+<tr><td>Beluga</td><td>10</td><td>220</td></tr>
+<tr><td>Belvedere</td><td>7</td><td>200</td></tr>
+<tr><td>Grey Goose</td><td>7</td><td>200</td></tr>
+<tr><td>Grey Goose 375ml</td><td>—</td><td>85</td></tr>
+<tr><td>Ketel One</td><td>8</td><td>175</td></tr>
+<tr><td>Absolut Blue</td><td>6</td><td>150</td></tr>
+<tr><td>Absolut Blue 375ml</td><td>—</td><td>65</td></tr>
+<tr><td>Smirnoff</td><td>6</td><td>150</td></tr>
+<tr><td>Smirnoff 375ml</td><td>—</td><td>65</td></tr>
+</tbody></table>
+<h2 id="blended-whiskey">Blended Whiskey</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Johnnie Walker King George V</td><td>—</td><td>600</td></tr>
+<tr><td>Johnnie Walker XR</td><td>—</td><td>500</td></tr>
+<tr><td>JW Blue Label</td><td>20</td><td>450</td></tr>
+<tr><td>Chivas Regal 25</td><td>25</td><td>500</td></tr>
+<tr><td>Royal Salute 21</td><td>—</td><td>450</td></tr>
+<tr><td>Chivas Regal Gold 15</td><td>—</td><td>230</td></tr>
+<tr><td>Chivas Regal 18</td><td>12</td><td>230</td></tr>
+<tr><td>JW Gold Reserve</td><td>9</td><td>230</td></tr>
+<tr><td>JW Double Black</td><td>8</td><td>220</td></tr>
+<tr><td>JW Black Label</td><td>7</td><td>200</td></tr>
+<tr><td>JW Black Label 375ml</td><td>—</td><td>85</td></tr>
+<tr><td>Chivas Regal 12</td><td>7</td><td>180</td></tr>
+<tr><td>Chivas Regal 12 375ml</td><td>—</td><td>85</td></tr>
+<tr><td>Monkey Shoulder</td><td>8</td><td>170</td></tr>
+<tr><td>Jameson</td><td>8</td><td>170</td></tr>
+<tr><td>JW Red Label</td><td>7</td><td>165</td></tr>
+<tr><td>JW Red Label 375ml</td><td>—</td><td>65</td></tr>
+<tr><td>Dewar&#x27;s White Label</td><td>7</td><td>150</td></tr>
+</tbody></table>
+<h2 id="single-malt">Single Malt</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Glenfiddich 18 YO</td><td>15</td><td>260</td></tr>
+<tr><td>Glenmorangie 18 YO</td><td>15</td><td>250</td></tr>
+<tr><td>Glenfiddich 12 YO</td><td>10</td><td>220</td></tr>
+<tr><td>Glenmorangie 10 YO</td><td>9</td><td>130</td></tr>
+</tbody></table>
+<h2 id="american-whiskey">American Whiskey</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Gentleman Jack</td><td>9</td><td>250</td></tr>
+<tr><td>Jack Daniel&#x27;s No.7</td><td>7</td><td>180</td></tr>
+<tr><td>Jack Daniel&#x27;s No.7 375ml</td><td>—</td><td>85</td></tr>
+<tr><td>Maker&#x27;s Mark</td><td>7</td><td>175</td></tr>
+<tr><td>Knob Creek</td><td>7</td><td>180</td></tr>
+<tr><td>Jim Beam</td><td>7</td><td>180</td></tr>
+</tbody></table>
+<h2 id="tequila">Tequila</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Patrón Añejo</td><td>9</td><td>250</td></tr>
+<tr><td>Patrón Reposado</td><td>8</td><td>200</td></tr>
+<tr><td>1800 Silver</td><td>7</td><td>150</td></tr>
+<tr><td>Patrón Silver</td><td>7</td><td>150</td></tr>
+<tr><td>Patrón XO Café</td><td>7</td><td>—</td></tr>
+<tr><td>Jose Cuervo Silver</td><td>6</td><td>130</td></tr>
+<tr><td>Tequila Rose</td><td>6</td><td>150</td></tr>
+</tbody></table>
+<h2 id="rum">Rum</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Captain Morgan Spiced</td><td>7</td><td>165</td></tr>
+<tr><td>Bacardi Superior</td><td>7</td><td>130</td></tr>
+<tr><td>Plantation Dark</td><td>8</td><td>200</td></tr>
+<tr><td>Plantation 5 Years</td><td>7</td><td>180</td></tr>
+</tbody></table>
+<h2 id="cognac--brandy">Cognac &amp; Brandy</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Hennessy XO</td><td>—</td><td>450</td></tr>
+<tr><td>Rémy Martin XO</td><td>—</td><td>500</td></tr>
+<tr><td>Hennessy VSOP</td><td>8</td><td>200</td></tr>
+<tr><td>Rémy Martin VSOP</td><td>8</td><td>200</td></tr>
+<tr><td>Hennessy VS</td><td>7</td><td>180</td></tr>
+<tr><td>Gold Napoleon VSOP</td><td>5</td><td>100</td></tr>
+</tbody></table>
+<h2 id="gin">Gin</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Hendrick&#x27;s</td><td>7</td><td>130</td></tr>
+<tr><td>Bombay Sapphire</td><td>6</td><td>120</td></tr>
+<tr><td>Tanqueray</td><td>6</td><td>120</td></tr>
+<tr><td>Beefeater</td><td>6</td><td>100</td></tr>
+<tr><td>Gordon&#x27;s</td><td>6</td><td>100</td></tr>
+</tbody></table>
+<h2 id="champagne--sparkling">Champagne &amp; Sparkling</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Dom Pérignon Brut</td><td>—</td><td>450</td></tr>
+<tr><td>Laurent-Perrier Rosé</td><td>—</td><td>300</td></tr>
+<tr><td>Moët &amp; Chandon Brut</td><td>—</td><td>200</td></tr>
+<tr><td>Andre Brut</td><td>—</td><td>60</td></tr>
+<tr><td>Polremy Sparkling Wine</td><td>10</td><td>50</td></tr>
+</tbody></table>
+<h2 id="red-wine">Red Wine</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Calvet Saint-Émilion 75cl</td><td>—</td><td>100</td></tr>
+<tr><td>Calvet Châteauneuf-du-Pape</td><td>—</td><td>75</td></tr>
+<tr><td>Sichel Margaux</td><td>—</td><td>70</td></tr>
+<tr><td>Calvet Saint-Émilion</td><td>—</td><td>50</td></tr>
+<tr><td>Château Le Bocage Bordeaux</td><td>—</td><td>45</td></tr>
+<tr><td>Viña Chocalán Carménère</td><td>—</td><td>35</td></tr>
+<tr><td>Calvet Varietals Merlot</td><td>—</td><td>25</td></tr>
+<tr><td>Beacon Hill Dry Red</td><td>6</td><td>—</td></tr>
+</tbody></table>
+<h2 id="rosé-wine">Rosé Wine</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Mateus Rosé</td><td>—</td><td>50</td></tr>
+<tr><td>Calvet Rosé</td><td>—</td><td>50</td></tr>
+<tr><td>Beacon Hill Dry Rosé</td><td>6</td><td>—</td></tr>
+</tbody></table>
+<h2 id="white-wine">White Wine</h2><table class="list"><thead><tr><th></th><th>Glass</th><th>Bottle</th></tr></thead><tbody>
+<tr><td>Calvet Sauvignon Blanc</td><td>—</td><td>50</td></tr>
+<tr><td>Beacon Hill Dry White</td><td>6</td><td>—</td></tr>
+</tbody></table>
+<h2 id="beers">Beers</h2>
+<table class="list single"><tbody><tr><td>Corona · Amstel · Heineken · Budweiser · Stella · Peroni · Savanna · DAB</td><td>6</td></tr><tr><td>ID · Smirnoff Ice</td><td>7</td></tr></tbody></table>
+<h2 id="classic-cocktails">Classic Cocktails <span class="flat">9 <small>BHD</small></span></h2>
+<p class="note">Mojito · Margarita · Cosmopolitan · Espresso Martini · Long Island Iced Tea · Piña Colada · Daiquiri · Old Fashioned · Negroni · Whiskey Sour · Moscow Mule · Manhattan · Mai Tai · Tom Collins · Caipivodka</p>
+<h2 id="shots">Shots <span class="flat">6 <small>BHD</small></span></h2>
+<p class="note">B-52 · Kamikaze · Lemon Drop · Tequila Slammer · Jäger Bomb · Baby Guinness · Washington Apple · Flaming Sambuca</p>
+<h2 id="soft-beverages">Soft Beverages</h2>
+<table class="list single"><tbody><tr><td>Voss Still / Perrier Sparkling</td><td>5</td></tr><tr><td>Local Water</td><td>2</td></tr><tr><td>Soft Drinks</td><td>5</td></tr><tr><td>Juices</td><td>5</td></tr><tr><td>Red Bull</td><td>5</td></tr><tr><td>Coffee</td><td>6</td></tr><tr><td>Tea Selection</td><td>6</td></tr></tbody></table>
+<p class="note">Tea: Black, Green, Chamomile, Rooibos, Ginger, Hibiscus, Jasmine</p>
+</section>
+<section class="panel" id="shisha" data-panel="shisha" hidden><h2>Shisha</h2><table class="list single"><tbody>
+<tr><td>Regular Shisha</td><td>16.5</td></tr><tr><td>Special</td><td>20</td></tr><tr><td>Fresh Shisha</td><td>30</td></tr><tr><td>Tobacco</td><td>5</td></tr>
+</tbody></table><h3 class="sub">Flavours</h3><p class="note big">Double Apple (Fakher / Nakhla Mix) · Grape Mint · Mint · Grape Berry · Grape · Lemon Mint · Blueberry · Gum Mint · Love 69</p></section>
 </main>
-<footer>All prices are inclusive of 5% Tourism Levy, 10% VAT &amp; 10% Service Charge</footer>
+<footer>
+  All prices are in Bahraini Dinar and inclusive of 5% Tourism Levy, 10% VAT &amp; 10% Service Charge.<br>
+  Please inform your server of any allergies.<br>
+  <a href="House_of_W_Menu.pdf">Download full menu (PDF)</a>
+</footer>
+<script>
+const tabs=[...document.querySelectorAll('.tabs button')], panels=[...document.querySelectorAll('.panel')];
+function show(name,scroll){
+  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===name));
+  panels.forEach(p=>p.hidden=p.dataset.panel!==name);
+  if(scroll){const y=document.querySelector('.tabs').offsetTop; if(window.scrollY>y) window.scrollTo({top:y});}
+  history.replaceState(null,'','#'+name); spy();
+}
+tabs.forEach(t=>t.onclick=()=>show(t.dataset.tab,true));
+const h=location.hash.slice(1); if(['drinks','shisha'].includes(h)) show(h);
+// highlight current section chip
+function spy(){
+  const panel=panels.find(p=>!p.hidden); const chips=[...panel.querySelectorAll('.chips a')]; if(!chips.length) return;
+  let cur=chips[0];
+  for(const c of chips){const s=document.querySelector(c.getAttribute('href')); if(s && s.getBoundingClientRect().top<140) cur=c;}
+  chips.forEach(c=>c.classList.toggle('on',c===cur));
+  if(cur.dataset.on!=='1'){chips.forEach(c=>c.dataset.on=''); cur.dataset.on='1'; cur.scrollIntoView({inline:'center',block:'nearest'});}
+}
+addEventListener('scroll',spy,{passive:true}); spy();
+</script>
 </body>
 </html>
