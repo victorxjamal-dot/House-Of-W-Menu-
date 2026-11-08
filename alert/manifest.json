@@ -1,6 +1,6 @@
 {
- "name": "Communication Alert",
- "short_name": "Comm Alert",
+ "name": "W SEC Team",
+ "short_name": "W SEC Team",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
